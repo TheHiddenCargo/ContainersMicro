@@ -1,0 +1,31 @@
+rigger:
+  branches:
+    include:
+      - main
+      - develop
+  paths:
+    include:
+      - '**'
+
+resources:
+  repositories:
+    - repository: SocketService
+      type: github
+      name: TheHiddenCargo/SocketService
+      endpoint: github-connection
+
+extends:
+  template: azure-pipelines-template.yml@socket
+  parameters:
+    projectName: 'ContainersMicro'
+    servicePort: '8085'
+    environment: 'production'
+    # Parámetros para SonarCloud
+    sonarCloudOrganization: 'TheHiddenCargo
+    sonarCloudProjectKey: 'TheHiddenCargo_ContainersMicro' 
+    enableSonarCloud: true
+    additionalSteps:
+      - script: |
+          echo "Running User-specific build steps"
+          mvn verify -Pcoverage
+        displayName: 'Containers micro'

@@ -4,17 +4,17 @@ import arsw.tamaltolimenese.ContainerMicro.model.Contenedor;
 import arsw.tamaltolimenese.ContainerMicro.model.Objeto;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class GeneradorService {
 
     private final List<String> colores = Arrays.asList("blanco", "gris", "azul", "dorado");
     private final List<String> nombresObjetos = Arrays.asList("Objeto1", "Objeto2", "Objeto3", "Objeto4");
-    private final Random random = new Random();
+    private final SecureRandom random = new SecureRandom();
 
     public Objeto generarObjetoAleatorio(String color) {
         String nombre = nombresObjetos.get(random.nextInt(nombresObjetos.size()));
